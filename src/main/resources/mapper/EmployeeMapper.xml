@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dx.employee.mapper.EmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.dx.employee.pojo.Employee" >
+    <result column="UserID" property="userid" jdbcType="NVARCHAR" />
+    <result column="UserName" property="username" jdbcType="NVARCHAR" />
+    <result column="nSex" property="nsex" jdbcType="NVARCHAR" />
+    <result column="StateCode" property="statecode" jdbcType="NVARCHAR" />
+    <result column="StateName" property="statename" jdbcType="NVARCHAR" />
+    <result column="DeptCode" property="deptcode" jdbcType="NVARCHAR" />
+    <result column="DeptName" property="deptname" jdbcType="NVARCHAR" />
+    <result column="AreaName" property="areaname" jdbcType="NVARCHAR" />
+    <result column="ZBName" property="zbname" jdbcType="NVARCHAR" />
+    <result column="JobCode" property="jobcode" jdbcType="NVARCHAR" />
+    <result column="JobName" property="jobname" jdbcType="NVARCHAR" />
+    <result column="JobType" property="jobtype" jdbcType="NVARCHAR" />
+    <result column="EduCode" property="educode" jdbcType="NVARCHAR" />
+    <result column="EduName" property="eduname" jdbcType="NVARCHAR" />
+    <result column="nSchool" property="nschool" jdbcType="NVARCHAR" />
+    <result column="PolType" property="poltype" jdbcType="NVARCHAR" />
+    <result column="HouReg" property="houreg" jdbcType="NVARCHAR" />
+    <result column="Nation" property="nation" jdbcType="NVARCHAR" />
+    <result column="CBUnit" property="cbunit" jdbcType="NVARCHAR" />
+    <result column="NationName" property="nationname" jdbcType="NVARCHAR" />
+    <result column="MarStatus" property="marstatus" jdbcType="NVARCHAR" />
+    <result column="nAddress" property="naddress" jdbcType="NVARCHAR" />
+    <result column="iAge" property="iage" jdbcType="INTEGER" />
+    <result column="BirthDate" property="birthdate" jdbcType="NVARCHAR" />
+    <result column="EntryDate" property="entrydate" jdbcType="NVARCHAR" />
+    <result column="CorrectionDate" property="correctiondate" jdbcType="NVARCHAR" />
+    <result column="LeaveDate" property="leavedate" jdbcType="NVARCHAR" />
+    <result column="ConTimes" property="contimes" jdbcType="INTEGER" />
+    <result column="ConStartDate" property="constartdate" jdbcType="NVARCHAR" />
+    <result column="ConEndDate" property="conenddate" jdbcType="NVARCHAR" />
+    <result column="IDCardNo" property="idcardno" jdbcType="NVARCHAR" />
+    <result column="IDEXPDate" property="idexpdate" jdbcType="NVARCHAR" />
+    <result column="Telephone" property="telephone" jdbcType="NVARCHAR" />
+    <result column="EmeContacts" property="emecontacts" jdbcType="NVARCHAR" />
+    <result column="EmeTelephone" property="emetelephone" jdbcType="NVARCHAR" />
+    <result column="SocStartDate" property="socstartdate" jdbcType="TIMESTAMP" />
+    <result column="SocEndDate" property="socenddate" jdbcType="TIMESTAMP" />
+    <result column="ComStartDate" property="comstartdate" jdbcType="TIMESTAMP" />
+    <result column="ComEndDate" property="comenddate" jdbcType="TIMESTAMP" />
+    <result column="LeaveReason" property="leavereason" jdbcType="NVARCHAR" />
+    <result column="Introducer" property="introducer" jdbcType="NVARCHAR" />
+    <result column="LeaveType" property="leavetype" jdbcType="NVARCHAR" />
+    <result column="cMemo" property="cmemo" jdbcType="NVARCHAR" />
+    <result column="Creater" property="creater" jdbcType="NVARCHAR" />
+    <result column="CreateDate" property="createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UserID, UserName, nSex, StateCode, StateName, DeptCode, DeptName, AreaName, ZBName, 
+    JobCode, JobName, JobType, EduCode, EduName, nSchool, PolType, HouReg, Nation, CBUnit, 
+    NationName, MarStatus, nAddress, iAge, BirthDate, EntryDate, CorrectionDate, LeaveDate, 
+    ConTimes, ConStartDate, ConEndDate, IDCardNo, IDEXPDate, Telephone, EmeContacts, 
+    EmeTelephone, SocStartDate, SocEndDate, ComStartDate, ComEndDate, LeaveReason, Introducer, 
+    LeaveType, cMemo, Creater, CreateDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dx.employee.pojo.EmployeeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Person_View
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.dx.employee.pojo.EmployeeExample" >
+    delete from Person_View
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dx.employee.pojo.Employee" >
+    insert into Person_View (UserID, UserName, nSex, 
+      StateCode, StateName, DeptCode, 
+      DeptName, AreaName, ZBName, 
+      JobCode, JobName, JobType, 
+      EduCode, EduName, nSchool, 
+      PolType, HouReg, Nation, 
+      CBUnit, NationName, MarStatus, 
+      nAddress, iAge, BirthDate, 
+      EntryDate, CorrectionDate, LeaveDate, 
+      ConTimes, ConStartDate, ConEndDate, 
+      IDCardNo, IDEXPDate, Telephone, 
+      EmeContacts, EmeTelephone, SocStartDate, 
+      SocEndDate, ComStartDate, ComEndDate, 
+      LeaveReason, Introducer, LeaveType, 
+      cMemo, Creater, CreateDate
+      )
+    values (#{userid,jdbcType=NVARCHAR}, #{username,jdbcType=NVARCHAR}, #{nsex,jdbcType=NVARCHAR}, 
+      #{statecode,jdbcType=NVARCHAR}, #{statename,jdbcType=NVARCHAR}, #{deptcode,jdbcType=NVARCHAR}, 
+      #{deptname,jdbcType=NVARCHAR}, #{areaname,jdbcType=NVARCHAR}, #{zbname,jdbcType=NVARCHAR}, 
+      #{jobcode,jdbcType=NVARCHAR}, #{jobname,jdbcType=NVARCHAR}, #{jobtype,jdbcType=NVARCHAR}, 
+      #{educode,jdbcType=NVARCHAR}, #{eduname,jdbcType=NVARCHAR}, #{nschool,jdbcType=NVARCHAR}, 
+      #{poltype,jdbcType=NVARCHAR}, #{houreg,jdbcType=NVARCHAR}, #{nation,jdbcType=NVARCHAR}, 
+      #{cbunit,jdbcType=NVARCHAR}, #{nationname,jdbcType=NVARCHAR}, #{marstatus,jdbcType=NVARCHAR}, 
+      #{naddress,jdbcType=NVARCHAR}, #{iage,jdbcType=INTEGER}, #{birthdate,jdbcType=NVARCHAR}, 
+      #{entrydate,jdbcType=NVARCHAR}, #{correctiondate,jdbcType=NVARCHAR}, #{leavedate,jdbcType=NVARCHAR}, 
+      #{contimes,jdbcType=INTEGER}, #{constartdate,jdbcType=NVARCHAR}, #{conenddate,jdbcType=NVARCHAR}, 
+      #{idcardno,jdbcType=NVARCHAR}, #{idexpdate,jdbcType=NVARCHAR}, #{telephone,jdbcType=NVARCHAR}, 
+      #{emecontacts,jdbcType=NVARCHAR}, #{emetelephone,jdbcType=NVARCHAR}, #{socstartdate,jdbcType=TIMESTAMP}, 
+      #{socenddate,jdbcType=TIMESTAMP}, #{comstartdate,jdbcType=TIMESTAMP}, #{comenddate,jdbcType=TIMESTAMP}, 
+      #{leavereason,jdbcType=NVARCHAR}, #{introducer,jdbcType=NVARCHAR}, #{leavetype,jdbcType=NVARCHAR}, 
+      #{cmemo,jdbcType=NVARCHAR}, #{creater,jdbcType=NVARCHAR}, #{createdate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dx.employee.pojo.Employee" >
+    insert into Person_View
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="nsex != null" >
+        nSex,
+      </if>
+      <if test="statecode != null" >
+        StateCode,
+      </if>
+      <if test="statename != null" >
+        StateName,
+      </if>
+      <if test="deptcode != null" >
+        DeptCode,
+      </if>
+      <if test="deptname != null" >
+        DeptName,
+      </if>
+      <if test="areaname != null" >
+        AreaName,
+      </if>
+      <if test="zbname != null" >
+        ZBName,
+      </if>
+      <if test="jobcode != null" >
+        JobCode,
+      </if>
+      <if test="jobname != null" >
+        JobName,
+      </if>
+      <if test="jobtype != null" >
+        JobType,
+      </if>
+      <if test="educode != null" >
+        EduCode,
+      </if>
+      <if test="eduname != null" >
+        EduName,
+      </if>
+      <if test="nschool != null" >
+        nSchool,
+      </if>
+      <if test="poltype != null" >
+        PolType,
+      </if>
+      <if test="houreg != null" >
+        HouReg,
+      </if>
+      <if test="nation != null" >
+        Nation,
+      </if>
+      <if test="cbunit != null" >
+        CBUnit,
+      </if>
+      <if test="nationname != null" >
+        NationName,
+      </if>
+      <if test="marstatus != null" >
+        MarStatus,
+      </if>
+      <if test="naddress != null" >
+        nAddress,
+      </if>
+      <if test="iage != null" >
+        iAge,
+      </if>
+      <if test="birthdate != null" >
+        BirthDate,
+      </if>
+      <if test="entrydate != null" >
+        EntryDate,
+      </if>
+      <if test="correctiondate != null" >
+        CorrectionDate,
+      </if>
+      <if test="leavedate != null" >
+        LeaveDate,
+      </if>
+      <if test="contimes != null" >
+        ConTimes,
+      </if>
+      <if test="constartdate != null" >
+        ConStartDate,
+      </if>
+      <if test="conenddate != null" >
+        ConEndDate,
+      </if>
+      <if test="idcardno != null" >
+        IDCardNo,
+      </if>
+      <if test="idexpdate != null" >
+        IDEXPDate,
+      </if>
+      <if test="telephone != null" >
+        Telephone,
+      </if>
+      <if test="emecontacts != null" >
+        EmeContacts,
+      </if>
+      <if test="emetelephone != null" >
+        EmeTelephone,
+      </if>
+      <if test="socstartdate != null" >
+        SocStartDate,
+      </if>
+      <if test="socenddate != null" >
+        SocEndDate,
+      </if>
+      <if test="comstartdate != null" >
+        ComStartDate,
+      </if>
+      <if test="comenddate != null" >
+        ComEndDate,
+      </if>
+      <if test="leavereason != null" >
+        LeaveReason,
+      </if>
+      <if test="introducer != null" >
+        Introducer,
+      </if>
+      <if test="leavetype != null" >
+        LeaveType,
+      </if>
+      <if test="cmemo != null" >
+        cMemo,
+      </if>
+      <if test="creater != null" >
+        Creater,
+      </if>
+      <if test="createdate != null" >
+        CreateDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=NVARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=NVARCHAR},
+      </if>
+      <if test="nsex != null" >
+        #{nsex,jdbcType=NVARCHAR},
+      </if>
+      <if test="statecode != null" >
+        #{statecode,jdbcType=NVARCHAR},
+      </if>
+      <if test="statename != null" >
+        #{statename,jdbcType=NVARCHAR},
+      </if>
+      <if test="deptcode != null" >
+        #{deptcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="deptname != null" >
+        #{deptname,jdbcType=NVARCHAR},
+      </if>
+      <if test="areaname != null" >
+        #{areaname,jdbcType=NVARCHAR},
+      </if>
+      <if test="zbname != null" >
+        #{zbname,jdbcType=NVARCHAR},
+      </if>
+      <if test="jobcode != null" >
+        #{jobcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="jobname != null" >
+        #{jobname,jdbcType=NVARCHAR},
+      </if>
+      <if test="jobtype != null" >
+        #{jobtype,jdbcType=NVARCHAR},
+      </if>
+      <if test="educode != null" >
+        #{educode,jdbcType=NVARCHAR},
+      </if>
+      <if test="eduname != null" >
+        #{eduname,jdbcType=NVARCHAR},
+      </if>
+      <if test="nschool != null" >
+        #{nschool,jdbcType=NVARCHAR},
+      </if>
+      <if test="poltype != null" >
+        #{poltype,jdbcType=NVARCHAR},
+      </if>
+      <if test="houreg != null" >
+        #{houreg,jdbcType=NVARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=NVARCHAR},
+      </if>
+      <if test="cbunit != null" >
+        #{cbunit,jdbcType=NVARCHAR},
+      </if>
+      <if test="nationname != null" >
+        #{nationname,jdbcType=NVARCHAR},
+      </if>
+      <if test="marstatus != null" >
+        #{marstatus,jdbcType=NVARCHAR},
+      </if>
+      <if test="naddress != null" >
+        #{naddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="iage != null" >
+        #{iage,jdbcType=INTEGER},
+      </if>
+      <if test="birthdate != null" >
+        #{birthdate,jdbcType=NVARCHAR},
+      </if>
+      <if test="entrydate != null" >
+        #{entrydate,jdbcType=NVARCHAR},
+      </if>
+      <if test="correctiondate != null" >
+        #{correctiondate,jdbcType=NVARCHAR},
+      </if>
+      <if test="leavedate != null" >
+        #{leavedate,jdbcType=NVARCHAR},
+      </if>
+      <if test="contimes != null" >
+        #{contimes,jdbcType=INTEGER},
+      </if>
+      <if test="constartdate != null" >
+        #{constartdate,jdbcType=NVARCHAR},
+      </if>
+      <if test="conenddate != null" >
+        #{conenddate,jdbcType=NVARCHAR},
+      </if>
+      <if test="idcardno != null" >
+        #{idcardno,jdbcType=NVARCHAR},
+      </if>
+      <if test="idexpdate != null" >
+        #{idexpdate,jdbcType=NVARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="emecontacts != null" >
+        #{emecontacts,jdbcType=NVARCHAR},
+      </if>
+      <if test="emetelephone != null" >
+        #{emetelephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="socstartdate != null" >
+        #{socstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="socenddate != null" >
+        #{socenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comstartdate != null" >
+        #{comstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comenddate != null" >
+        #{comenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leavereason != null" >
+        #{leavereason,jdbcType=NVARCHAR},
+      </if>
+      <if test="introducer != null" >
+        #{introducer,jdbcType=NVARCHAR},
+      </if>
+      <if test="leavetype != null" >
+        #{leavetype,jdbcType=NVARCHAR},
+      </if>
+      <if test="cmemo != null" >
+        #{cmemo,jdbcType=NVARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=NVARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dx.employee.pojo.EmployeeExample" resultType="java.lang.Integer" >
+    select count(*) from Person_View
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Person_View
+    <set >
+      <if test="record.userid != null" >
+        UserID = #{record.userid,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.username != null" >
+        UserName = #{record.username,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.nsex != null" >
+        nSex = #{record.nsex,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.statecode != null" >
+        StateCode = #{record.statecode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.statename != null" >
+        StateName = #{record.statename,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.deptcode != null" >
+        DeptCode = #{record.deptcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.deptname != null" >
+        DeptName = #{record.deptname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.areaname != null" >
+        AreaName = #{record.areaname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.zbname != null" >
+        ZBName = #{record.zbname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.jobcode != null" >
+        JobCode = #{record.jobcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.jobname != null" >
+        JobName = #{record.jobname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.jobtype != null" >
+        JobType = #{record.jobtype,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.educode != null" >
+        EduCode = #{record.educode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.eduname != null" >
+        EduName = #{record.eduname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.nschool != null" >
+        nSchool = #{record.nschool,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.poltype != null" >
+        PolType = #{record.poltype,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.houreg != null" >
+        HouReg = #{record.houreg,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.nation != null" >
+        Nation = #{record.nation,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cbunit != null" >
+        CBUnit = #{record.cbunit,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.nationname != null" >
+        NationName = #{record.nationname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.marstatus != null" >
+        MarStatus = #{record.marstatus,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.naddress != null" >
+        nAddress = #{record.naddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.iage != null" >
+        iAge = #{record.iage,jdbcType=INTEGER},
+      </if>
+      <if test="record.birthdate != null" >
+        BirthDate = #{record.birthdate,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.entrydate != null" >
+        EntryDate = #{record.entrydate,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.correctiondate != null" >
+        CorrectionDate = #{record.correctiondate,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.leavedate != null" >
+        LeaveDate = #{record.leavedate,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.contimes != null" >
+        ConTimes = #{record.contimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.constartdate != null" >
+        ConStartDate = #{record.constartdate,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.conenddate != null" >
+        ConEndDate = #{record.conenddate,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.idcardno != null" >
+        IDCardNo = #{record.idcardno,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.idexpdate != null" >
+        IDEXPDate = #{record.idexpdate,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.telephone != null" >
+        Telephone = #{record.telephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.emecontacts != null" >
+        EmeContacts = #{record.emecontacts,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.emetelephone != null" >
+        EmeTelephone = #{record.emetelephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.socstartdate != null" >
+        SocStartDate = #{record.socstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.socenddate != null" >
+        SocEndDate = #{record.socenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comstartdate != null" >
+        ComStartDate = #{record.comstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comenddate != null" >
+        ComEndDate = #{record.comenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.leavereason != null" >
+        LeaveReason = #{record.leavereason,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.introducer != null" >
+        Introducer = #{record.introducer,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.leavetype != null" >
+        LeaveType = #{record.leavetype,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cmemo != null" >
+        cMemo = #{record.cmemo,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.creater != null" >
+        Creater = #{record.creater,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.createdate != null" >
+        CreateDate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Person_View
+    set UserID = #{record.userid,jdbcType=NVARCHAR},
+      UserName = #{record.username,jdbcType=NVARCHAR},
+      nSex = #{record.nsex,jdbcType=NVARCHAR},
+      StateCode = #{record.statecode,jdbcType=NVARCHAR},
+      StateName = #{record.statename,jdbcType=NVARCHAR},
+      DeptCode = #{record.deptcode,jdbcType=NVARCHAR},
+      DeptName = #{record.deptname,jdbcType=NVARCHAR},
+      AreaName = #{record.areaname,jdbcType=NVARCHAR},
+      ZBName = #{record.zbname,jdbcType=NVARCHAR},
+      JobCode = #{record.jobcode,jdbcType=NVARCHAR},
+      JobName = #{record.jobname,jdbcType=NVARCHAR},
+      JobType = #{record.jobtype,jdbcType=NVARCHAR},
+      EduCode = #{record.educode,jdbcType=NVARCHAR},
+      EduName = #{record.eduname,jdbcType=NVARCHAR},
+      nSchool = #{record.nschool,jdbcType=NVARCHAR},
+      PolType = #{record.poltype,jdbcType=NVARCHAR},
+      HouReg = #{record.houreg,jdbcType=NVARCHAR},
+      Nation = #{record.nation,jdbcType=NVARCHAR},
+      CBUnit = #{record.cbunit,jdbcType=NVARCHAR},
+      NationName = #{record.nationname,jdbcType=NVARCHAR},
+      MarStatus = #{record.marstatus,jdbcType=NVARCHAR},
+      nAddress = #{record.naddress,jdbcType=NVARCHAR},
+      iAge = #{record.iage,jdbcType=INTEGER},
+      BirthDate = #{record.birthdate,jdbcType=NVARCHAR},
+      EntryDate = #{record.entrydate,jdbcType=NVARCHAR},
+      CorrectionDate = #{record.correctiondate,jdbcType=NVARCHAR},
+      LeaveDate = #{record.leavedate,jdbcType=NVARCHAR},
+      ConTimes = #{record.contimes,jdbcType=INTEGER},
+      ConStartDate = #{record.constartdate,jdbcType=NVARCHAR},
+      ConEndDate = #{record.conenddate,jdbcType=NVARCHAR},
+      IDCardNo = #{record.idcardno,jdbcType=NVARCHAR},
+      IDEXPDate = #{record.idexpdate,jdbcType=NVARCHAR},
+      Telephone = #{record.telephone,jdbcType=NVARCHAR},
+      EmeContacts = #{record.emecontacts,jdbcType=NVARCHAR},
+      EmeTelephone = #{record.emetelephone,jdbcType=NVARCHAR},
+      SocStartDate = #{record.socstartdate,jdbcType=TIMESTAMP},
+      SocEndDate = #{record.socenddate,jdbcType=TIMESTAMP},
+      ComStartDate = #{record.comstartdate,jdbcType=TIMESTAMP},
+      ComEndDate = #{record.comenddate,jdbcType=TIMESTAMP},
+      LeaveReason = #{record.leavereason,jdbcType=NVARCHAR},
+      Introducer = #{record.introducer,jdbcType=NVARCHAR},
+      LeaveType = #{record.leavetype,jdbcType=NVARCHAR},
+      cMemo = #{record.cmemo,jdbcType=NVARCHAR},
+      Creater = #{record.creater,jdbcType=NVARCHAR},
+      CreateDate = #{record.createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
