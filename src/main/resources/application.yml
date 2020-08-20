@@ -5,6 +5,11 @@ spring:
     username: sa
     password: 1234
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
   thymeleaf:
     enabled: true
     encoding: utf-8

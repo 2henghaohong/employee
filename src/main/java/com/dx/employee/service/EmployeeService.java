@@ -7,4 +7,6 @@ import java.util.List;
 public interface EmployeeService {
 
     public List<Employee> getEmployeeInfo();
+
+    public List<Employee> searchEmployeeByDate(String startDate,String endDate);
 }
